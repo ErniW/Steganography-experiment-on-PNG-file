@@ -19,14 +19,11 @@ def set_bit(value, bit):
 
     return value
 
-# def get_bits():
-#     pass
-
 def get_message_length(image):
     length = 0
 
     for i in range(16):
-        bit = is_even(image[i * 3])
+        bit = is_even(image[i * 4])
         length = (length << 1) | bit
 
     return length
@@ -34,9 +31,9 @@ def get_message_length(image):
 def get_message(image, length):
     message = ""
 
-    current_value = 16 * 3
+    current_value = 16 * 4
 
-    for char_index in range(length):
+    for _ in range(length):
 
         char = 0
 
@@ -45,7 +42,7 @@ def get_message(image, length):
             bit = is_even(image[current_value])
             char = (char << 1) | bit
 
-            current_value += 3
+            current_value += 4
 
         message += chr(char)
 
